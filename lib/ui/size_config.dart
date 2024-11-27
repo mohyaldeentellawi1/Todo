@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class SizeConfig {
@@ -9,7 +11,7 @@ class SizeConfig {
   static void init(BuildContext context) {
     _mediaQueryData = MediaQuery.sizeOf(context);
     screenWidth = _mediaQueryData.width;
-    print('$screenWidth');
+    log('$screenWidth');
     screenHeight = _mediaQueryData.height;
     orientation = _mediaQueryData.width > _mediaQueryData.height
         ? Orientation.landscape

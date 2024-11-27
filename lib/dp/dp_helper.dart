@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
@@ -23,7 +25,7 @@ class DpHelper {
         if (await Directory(dir).exists() == false) {
           await Directory(dir).create(recursive: true);
         }
-        print('in database path $path');
+        log('in database path $path');
         _dp = await openDatabase(
           path,
           version: _version,
@@ -39,40 +41,40 @@ class DpHelper {
             );
           },
         );
-        print('Database Created');
+        log('Database Created');
       } catch (e) {
-        print(e);
+        log('Error in creating database $e');
       }
     }
   }
 
   static Future<int> insert(Task task) async {
-    print('insert something');
+    log('insert something');
     try {
       return await _dp!.insert(_tableName, task.toJson());
     } catch (e) {
-      print('We are Here');
+      log('We are Here');
       return 9000;
     }
   }
 
   static Future<int> delete(Task task) async {
-    print('Delete');
+    log('Delete');
     return await _dp!.delete(_tableName, where: 'id = ?', whereArgs: [task.id]);
   }
 
   static Future<int> deleteAll() async {
-    print('Delete All');
+    log('Delete All');
     return await _dp!.delete(_tableName);
   }
 
   static Future<List<Map<String, dynamic>>> query() async {
-    print('query');
+    log('query');
     return await _dp!.query(_tableName);
   }
 
   static Future<int> update(Task task) async {
-    print('Update');
+    log('Update');
     return await _dp!.rawUpdate('''
     UPDATE tasks 
     SET isCompleted = ?

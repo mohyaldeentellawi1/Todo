@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -235,7 +237,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
         icon: Icon(Icons.warning_amber_rounded, color: primaryClr, size: 30),
       );
     } else {
-      print('Something Bad Happened');
+      log('Something Bad Happened');
     }
   }
 
@@ -267,9 +269,9 @@ class _AddTaskPageState extends State<AddTaskPage> {
             remind: _selectedRemind,
             repeat: _selectedRepeat),
       );
-      print('Task Added $id');
+      log('Task Added $id');
     } catch (e) {
-      print(e);
+      log('$e');
     }
     _titleController.clear();
     _noteController.clear();
@@ -347,7 +349,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
         endTime = formattedTime;
       });
     } else {
-      print('The time was not selected');
+      log('The time was not selected');
     }
   }
 }

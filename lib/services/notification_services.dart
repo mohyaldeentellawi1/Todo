@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:get/get.dart';
@@ -53,7 +54,7 @@ class NotificationServices {
       payload: '${task.title}|${task.note}|${task.startTime}|',
     )
         .then((value) {
-      print('Basic Notification Sent');
+      log('Basic Notification Sent');
     });
   }
 
@@ -113,21 +114,21 @@ class NotificationServices {
         scheduledDate = scheduledDate.subtract(const Duration(minutes: 5));
         break;
     }
-    print('scheduledDate $scheduledDate');
+    log('scheduledDate $scheduledDate');
     return scheduledDate;
   }
 
 // cancel notification by id
   static void cancelNotification({required int id}) async {
     await notificationsPlugin.cancel(id).then((value) {
-      print('Notification Cancelled');
+      log('Notification Cancelled');
     });
   }
 
   // cancel all notifications
   static void cancelAllNotifications() async {
     await notificationsPlugin.cancelAll().then((value) {
-      print('All Notifications Cancelled');
+      log('All Notifications Cancelled');
     });
   }
 
